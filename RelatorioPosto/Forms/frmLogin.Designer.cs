@@ -15,6 +15,7 @@
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.lblRelatorioVendas = new System.Windows.Forms.Label();
             this.gpbxIdColaborador = new System.Windows.Forms.GroupBox();
             this.txbxSenhaColaborador = new System.Windows.Forms.TextBox();
@@ -25,8 +26,9 @@
             this.btnCancelarLogin = new System.Windows.Forms.Button();
             this.gpbxIdColaborador.SuspendLayout();
             this.SuspendLayout();
-
- 
+            // 
+            // lblRelatorioVendas
+            // 
             this.lblRelatorioVendas.AutoSize = true;
             this.lblRelatorioVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRelatorioVendas.Location = new System.Drawing.Point(47, 9);
@@ -35,8 +37,9 @@
             this.lblRelatorioVendas.TabIndex = 0;
             this.lblRelatorioVendas.Text = "Relatório de Vendas";
             this.lblRelatorioVendas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-
+            // 
+            // gpbxIdColaborador
+            // 
             this.gpbxIdColaborador.Controls.Add(this.txbxSenhaColaborador);
             this.gpbxIdColaborador.Controls.Add(this.lblSenhaColaborador);
             this.gpbxIdColaborador.Controls.Add(this.cbxCodigoColaborador);
@@ -48,24 +51,27 @@
             this.gpbxIdColaborador.TabIndex = 1;
             this.gpbxIdColaborador.TabStop = false;
             this.gpbxIdColaborador.Text = "Identificação do Colaborador";
-
-
+            // 
+            // txbxSenhaColaborador
+            // 
             this.txbxSenhaColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbxSenhaColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbxSenhaColaborador.Location = new System.Drawing.Point(17, 108);
             this.txbxSenhaColaborador.Name = "txbxSenhaColaborador";
             this.txbxSenhaColaborador.Size = new System.Drawing.Size(329, 21);
             this.txbxSenhaColaborador.TabIndex = 2;
-
-
+            // 
+            // lblSenhaColaborador
+            // 
             this.lblSenhaColaborador.AutoSize = true;
             this.lblSenhaColaborador.Location = new System.Drawing.Point(14, 87);
             this.lblSenhaColaborador.Name = "lblSenhaColaborador";
             this.lblSenhaColaborador.Size = new System.Drawing.Size(46, 15);
             this.lblSenhaColaborador.TabIndex = 2;
             this.lblSenhaColaborador.Text = "Senha:";
-
-
+            // 
+            // cbxCodigoColaborador
+            // 
             this.cbxCodigoColaborador.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxCodigoColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCodigoColaborador.FormattingEnabled = true;
@@ -74,8 +80,9 @@
             this.cbxCodigoColaborador.Size = new System.Drawing.Size(329, 23);
             this.cbxCodigoColaborador.TabIndex = 1;
             this.cbxCodigoColaborador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbxCodigoColaborador_KeyDown);
-
-
+            // 
+            // lblCodigoColaborador
+            // 
             this.lblCodigoColaborador.AutoSize = true;
             this.lblCodigoColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoColaborador.Location = new System.Drawing.Point(14, 31);
@@ -83,8 +90,9 @@
             this.lblCodigoColaborador.Size = new System.Drawing.Size(137, 15);
             this.lblCodigoColaborador.TabIndex = 0;
             this.lblCodigoColaborador.Text = "Código do Colaborador:";
-
-
+            // 
+            // btnConfirmarLogin
+            // 
             this.btnConfirmarLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmarLogin.Location = new System.Drawing.Point(303, 226);
             this.btnConfirmarLogin.Name = "btnConfirmarLogin";
@@ -93,8 +101,9 @@
             this.btnConfirmarLogin.Text = "Confirmar";
             this.btnConfirmarLogin.UseVisualStyleBackColor = true;
             this.btnConfirmarLogin.Click += new System.EventHandler(this.btnConfirmarLogin_Click);
-
-
+            // 
+            // btnCancelarLogin
+            // 
             this.btnCancelarLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelarLogin.Location = new System.Drawing.Point(228, 226);
             this.btnCancelarLogin.Name = "btnCancelarLogin";
@@ -102,8 +111,9 @@
             this.btnCancelarLogin.TabIndex = 3;
             this.btnCancelarLogin.Text = "Cancelar";
             this.btnCancelarLogin.UseVisualStyleBackColor = true;
-
-
+            // 
+            // frmLogin
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 261);
@@ -111,6 +121,7 @@
             this.Controls.Add(this.btnConfirmarLogin);
             this.Controls.Add(this.gpbxIdColaborador);
             this.Controls.Add(this.lblRelatorioVendas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
             this.Text = "Seleção de Colaborador";
             this.Load += new System.EventHandler(this.frmLogin_Load);
