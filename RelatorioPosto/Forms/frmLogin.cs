@@ -147,5 +147,13 @@ namespace RelatorioPosto
             cbxCodigoColaborador.SelectedIndex = -1;
             txbxSenhaColaborador.Text = "";
         }
+
+        private void txbxSenhaColaborador_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnConfirmarLogin_Click(sender, e);
+            }
+        }
     }
 }

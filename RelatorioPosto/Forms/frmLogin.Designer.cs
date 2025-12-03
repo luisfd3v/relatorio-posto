@@ -60,6 +60,7 @@
             this.txbxSenhaColaborador.Name = "txbxSenhaColaborador";
             this.txbxSenhaColaborador.Size = new System.Drawing.Size(329, 21);
             this.txbxSenhaColaborador.TabIndex = 2;
+            this.txbxSenhaColaborador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbxSenhaColaborador_KeyDown);
             // 
             // lblSenhaColaborador
             // 
@@ -123,6 +124,7 @@
             this.Controls.Add(this.lblRelatorioVendas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleção de Colaborador";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.gpbxIdColaborador.ResumeLayout(false);

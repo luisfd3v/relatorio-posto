@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -70,6 +71,9 @@ namespace RelatorioPosto.Forms
             dtgvProdutos.AutoGenerateColumns = false;
             dtgvProdutos.Columns.Clear();
 
+            // Definir cultura brasileira para formatação
+            var culturaBrasileira = new CultureInfo("pt-BR");
+
             DataGridViewTextBoxColumn colExpansao = new DataGridViewTextBoxColumn();
             colExpansao.DataPropertyName = "BotaoExpansao";
             colExpansao.HeaderText = "";
@@ -106,6 +110,7 @@ namespace RelatorioPosto.Forms
             colLitros.FillWeight = 20;
             colLitros.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             colLitros.DefaultCellStyle.Format = "N3";
+            colLitros.DefaultCellStyle.FormatProvider = culturaBrasileira;
             colLitros.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtgvProdutos.Columns.Add(colLitros);
 
@@ -117,6 +122,7 @@ namespace RelatorioPosto.Forms
             colTotalVendido.FillWeight = 20;
             colTotalVendido.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             colTotalVendido.DefaultCellStyle.Format = "C2";
+            colTotalVendido.DefaultCellStyle.FormatProvider = culturaBrasileira;
             colTotalVendido.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtgvProdutos.Columns.Add(colTotalVendido);
 
@@ -320,7 +326,8 @@ namespace RelatorioPosto.Forms
             double totalLitros = produtosPrincipais.Sum(v => v.Quantidade);
             double totalValor = produtosPrincipais.Sum(v => v.ValorTotal);
 
-            lblTotalGeral.Text = $"Total de Vendas: Abastecimentos: {totalAbastecimentos} | Litros: {totalLitros:N3} | {totalValor:C2}";
+            var culturaBrasileira = new CultureInfo("pt-BR");
+            lblTotalGeral.Text = $"Total de Vendas: Abastecimentos: {totalAbastecimentos} | Litros: {totalLitros.ToString("N3", culturaBrasileira)} | {totalValor.ToString("C2", culturaBrasileira)}";
         }
 
         private void btnFiltrarData_Click(object sender, EventArgs e)
