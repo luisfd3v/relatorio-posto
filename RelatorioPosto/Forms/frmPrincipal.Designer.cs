@@ -94,6 +94,7 @@
             this.dtpDataInicio.Name = "dtpDataInicio";
             this.dtpDataInicio.Size = new System.Drawing.Size(440, 20);
             this.dtpDataInicio.TabIndex = 1;
+            this.dtpDataInicio.ValueChanged += new System.EventHandler(this.dtpDataInicio_ValueChanged);
             // 
             // lblDataFim
             // 

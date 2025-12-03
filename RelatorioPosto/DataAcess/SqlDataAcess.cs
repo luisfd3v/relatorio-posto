@@ -108,7 +108,7 @@ namespace RelatorioPosto.DataAcess
                         WHERE 
                             ac.AF_CUP = @codigoVendedor
                             AND ac.AG_CUP >= @dataInicio
-                            AND ac.AG_CUP <= @dataFim
+                            AND ac.AG_CUP < @dataFim
                             AND al.AB_LPO = '01'
                             AND ac.AH_CUP BETWEEN '3' AND '8'
                         GROUP BY 
@@ -119,8 +119,8 @@ namespace RelatorioPosto.DataAcess
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@codigoVendedor", int.Parse(codigoVendedor));
-                        cmd.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyyMMdd"));
-                        cmd.Parameters.AddWithValue("@dataFim", dataFim.AddDays(1).ToString("yyyyMMdd"));
+                        cmd.Parameters.AddWithValue("@dataInicio", dataInicio.Date);
+                        cmd.Parameters.AddWithValue("@dataFim", dataFim.AddDays(1).Date);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -223,7 +223,7 @@ namespace RelatorioPosto.DataAcess
                             ac.AF_CUP = @codigoVendedor
                             AND p.AA_ITE = @codigoProduto
                             AND ac.AG_CUP >= @dataInicio
-                            AND ac.AG_CUP <= @dataFim
+                            AND ac.AG_CUP < @dataFim
                             AND al.AB_LPO = '01'
                             AND ac.AH_CUP BETWEEN '3' AND '8'
                         GROUP BY 
@@ -235,8 +235,8 @@ namespace RelatorioPosto.DataAcess
                     {
                         cmd.Parameters.AddWithValue("@codigoVendedor", int.Parse(codigoVendedor));
                         cmd.Parameters.AddWithValue("@codigoProduto", codigoProduto);
-                        cmd.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyyMMdd"));
-                        cmd.Parameters.AddWithValue("@dataFim", dataFim.AddDays(1).ToString("yyyyMMdd"));
+                        cmd.Parameters.AddWithValue("@dataInicio", dataInicio.Date);
+                        cmd.Parameters.AddWithValue("@dataFim", dataFim.AddDays(1).Date);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {

@@ -70,7 +70,6 @@ namespace RelatorioPosto.Forms
             dtgvProdutos.AutoGenerateColumns = false;
             dtgvProdutos.Columns.Clear();
 
-            // Coluna do botão de expansão
             DataGridViewTextBoxColumn colExpansao = new DataGridViewTextBoxColumn();
             colExpansao.DataPropertyName = "BotaoExpansao";
             colExpansao.HeaderText = "";
@@ -81,7 +80,6 @@ namespace RelatorioPosto.Forms
             colExpansao.DefaultCellStyle.Font = new Font(dtgvProdutos.Font.FontFamily, 12, FontStyle.Bold);
             dtgvProdutos.Columns.Add(colExpansao);
 
-            // Coluna Produto
             DataGridViewTextBoxColumn colProduto = new DataGridViewTextBoxColumn();
             colProduto.DataPropertyName = "DescricaoFormatada";
             colProduto.HeaderText = "Produto";
@@ -90,7 +88,6 @@ namespace RelatorioPosto.Forms
             colProduto.FillWeight = 40;
             dtgvProdutos.Columns.Add(colProduto);
 
-            // Coluna Abastecimentos
             DataGridViewTextBoxColumn colAbastecimentos = new DataGridViewTextBoxColumn();
             colAbastecimentos.DataPropertyName = "NumAbastecimentos";
             colAbastecimentos.HeaderText = "Abastecimentos";
@@ -101,7 +98,6 @@ namespace RelatorioPosto.Forms
             colAbastecimentos.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtgvProdutos.Columns.Add(colAbastecimentos);
 
-            // Coluna Litros
             DataGridViewTextBoxColumn colLitros = new DataGridViewTextBoxColumn();
             colLitros.DataPropertyName = "Quantidade";
             colLitros.HeaderText = "Litros";
@@ -113,7 +109,6 @@ namespace RelatorioPosto.Forms
             colLitros.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtgvProdutos.Columns.Add(colLitros);
 
-            // Coluna Total Vendido
             DataGridViewTextBoxColumn colTotalVendido = new DataGridViewTextBoxColumn();
             colTotalVendido.DataPropertyName = "ValorTotal";
             colTotalVendido.HeaderText = "Total Vendido";
@@ -125,7 +120,6 @@ namespace RelatorioPosto.Forms
             colTotalVendido.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dtgvProdutos.Columns.Add(colTotalVendido);
 
-            // Configurações gerais do DataGridView
             dtgvProdutos.AllowUserToAddRows = false;
             dtgvProdutos.AllowUserToDeleteRows = false;
             dtgvProdutos.AllowUserToResizeRows = false;
@@ -137,7 +131,6 @@ namespace RelatorioPosto.Forms
             dtgvProdutos.BackgroundColor = System.Drawing.Color.White;
             dtgvProdutos.BorderStyle = BorderStyle.Fixed3D;
 
-            // Adicionar eventos
             dtgvProdutos.CellClick += dtgvProdutos_CellClick;
             dtgvProdutos.CellDoubleClick += dtgvProdutos_CellDoubleClick;
             dtgvProdutos.CellFormatting += dtgvProdutos_CellFormatting;
@@ -149,19 +142,16 @@ namespace RelatorioPosto.Forms
             {
                 var item = vendasDisplay[e.RowIndex];
 
-                // Aplicar estilo diferente para linhas de detalhe
                 if (item.IsDetailRow)
                 {
                     if (item.TipoProduto == "total_dia")
                     {
-                        // Estilo para TOTAL DO DIA
                         e.CellStyle.BackColor = Color.LightBlue;
                         e.CellStyle.Font = new Font(dtgvProdutos.Font, FontStyle.Bold);
                         e.CellStyle.ForeColor = Color.Black;
                     }
                     else
                     {
-                        // Estilo para linhas de produtos individuais
                         e.CellStyle.BackColor = Color.White;
                         e.CellStyle.ForeColor = Color.Black;
                     }
@@ -171,7 +161,7 @@ namespace RelatorioPosto.Forms
 
         private void dtgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0) // Clique na coluna do botão de expansão
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
                 AlternarExpansao(e.RowIndex);
             }
@@ -179,7 +169,7 @@ namespace RelatorioPosto.Forms
 
         private void dtgvProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex > 0) // Duplo clique em qualquer coluna exceto a de expansão
+            if (e.RowIndex >= 0 && e.ColumnIndex > 0)
             {
                 var item = vendasDisplay[e.RowIndex];
                 if (!item.IsDetailRow)
@@ -196,18 +186,15 @@ namespace RelatorioPosto.Forms
 
             var item = vendasDisplay[rowIndex];
 
-            // Não expandir linhas de detalhe
             if (item.IsDetailRow)
                 return;
 
             if (item.IsExpanded)
             {
-                // Recolher - remover linhas de detalhe
                 RecolherProduto(rowIndex);
             }
             else
             {
-                // Expandir - adicionar linhas de detalhe
                 ExpandirProduto(rowIndex);
             }
 
@@ -219,7 +206,6 @@ namespace RelatorioPosto.Forms
         {
             var produto = vendasDisplay[rowIndex];
 
-            // Buscar detalhes se não estiverem em cache
             if (!vendasDetalhadasCache.ContainsKey(produto.ProdutoCodigo))
             {
                 var sqlDataAccess = new DataAcess.SqlDataAcess();
@@ -234,7 +220,6 @@ namespace RelatorioPosto.Forms
 
             var vendasDetalhadas = vendasDetalhadasCache[produto.ProdutoCodigo];
 
-            // Agrupar por data e adicionar linhas
             var vendasPorData = vendasDetalhadas
                 .GroupBy(v => v.DataVenda.Date)
                 .OrderBy(g => g.Key);
@@ -243,7 +228,6 @@ namespace RelatorioPosto.Forms
 
             foreach (var grupo in vendasPorData)
             {
-                // Adicionar linha de TOTAL DO DIA
                 var totalDia = new Models.VendaItem
                 {
                     ProdutoCodigo = produto.ProdutoCodigo,
@@ -258,7 +242,6 @@ namespace RelatorioPosto.Forms
                 vendasDisplay.Insert(insertIndex, linhaTotalDia);
                 insertIndex++;
 
-                // Adicionar linhas de produtos do dia
                 foreach (var venda in grupo.OrderBy(v => v.ProdutoDescricao))
                 {
                     var detalhe = new Models.VendaItemDisplay(venda, true, grupo.Key);
@@ -272,7 +255,6 @@ namespace RelatorioPosto.Forms
         {
             var produto = vendasDisplay[rowIndex];
 
-            // Remover todas as linhas de detalhe após este produto
             int i = rowIndex + 1;
             while (i < vendasDisplay.Count && vendasDisplay[i].IsDetailRow)
             {
@@ -282,14 +264,11 @@ namespace RelatorioPosto.Forms
 
         private void AtualizarGrid()
         {
-            // Salvar a seleção atual
             int selectedIndex = dtgvProdutos.CurrentRow?.Index ?? -1;
 
-            // Atualizar o DataSource
             dtgvProdutos.DataSource = null;
             dtgvProdutos.DataSource = vendasDisplay;
 
-            // Restaurar a seleção
             if (selectedIndex >= 0 && selectedIndex < dtgvProdutos.Rows.Count)
             {
                 dtgvProdutos.Rows[selectedIndex].Selected = true;
@@ -302,19 +281,17 @@ namespace RelatorioPosto.Forms
             var sqlDataAcess = new RelatorioPosto.DataAcess.SqlDataAcess();
             var vendas = sqlDataAcess.GetVendasPorColaboradorEPeriodo(colaboradorCodigo, dtpDataInicio.Value, dtpDataFim.Value);
 
-            // Ordenar por código do produto (AA_ITE)
-            var vendasOrdenadas = vendas.OrderBy(v => v.ProdutoCodigo).ToList();
+            var vendasOrdenadas = vendas.OrderByDescending(v => v.NumAbastecimentos).ThenBy(v => v.ProdutoCodigo).ToList();
 
-            // Limpar cache e lista de display
             vendasDetalhadasCache.Clear();
             vendasDisplay.Clear();
 
-            // Criar itens de display para cada produto
             foreach (var venda in vendasOrdenadas)
             {
                 vendasDisplay.Add(new Models.VendaItemDisplay(venda));
             }
 
+            dtgvProdutos.DataSource = null;
             dtgvProdutos.DataSource = vendasDisplay;
         }
 
@@ -323,6 +300,11 @@ namespace RelatorioPosto.Forms
             vendasDetalhadasCache.Clear();
             vendasDisplay.Clear();
             CarregarDados();
+        }
+
+        private void dtpDataInicio_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
