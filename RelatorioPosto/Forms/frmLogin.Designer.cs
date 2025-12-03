@@ -26,7 +26,7 @@
             this.gpbxIdColaborador.SuspendLayout();
             this.SuspendLayout();
 
-
+ 
             this.lblRelatorioVendas.AutoSize = true;
             this.lblRelatorioVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRelatorioVendas.Location = new System.Drawing.Point(47, 9);
@@ -66,7 +66,6 @@
             this.lblSenhaColaborador.Text = "Senha:";
 
 
-            this.cbxCodigoColaborador.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxCodigoColaborador.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxCodigoColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCodigoColaborador.FormattingEnabled = true;
@@ -93,6 +92,7 @@
             this.btnConfirmarLogin.TabIndex = 2;
             this.btnConfirmarLogin.Text = "Confirmar";
             this.btnConfirmarLogin.UseVisualStyleBackColor = true;
+            this.btnConfirmarLogin.Click += new System.EventHandler(this.btnConfirmarLogin_Click);
 
 
             this.btnCancelarLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

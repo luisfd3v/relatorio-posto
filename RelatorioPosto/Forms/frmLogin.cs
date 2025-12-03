@@ -1,6 +1,8 @@
 ﻿using RelatorioPosto.DataAcess;
 using System;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RelatorioPosto
@@ -22,6 +24,9 @@ namespace RelatorioPosto
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+
+            txbxSenhaColaborador.PasswordChar = '*';
+
             string query = "SELECT CODIGO_VEN, NOME_VEN, AP_VEN FROM AVENDEGE WHERE AQ_VEN = 'S' ORDER BY CODIGO_VEN";
             DataTable dt = sqlDataAcess.ExecuteQuery(query);
             if (dt != null && dt.Rows.Count > 0)
@@ -37,6 +42,7 @@ namespace RelatorioPosto
                 cbxCodigoColaborador.DisplayMember = "NomeCompleto";
                 cbxCodigoColaborador.ValueMember = "CODIGO_VEN";
                 cbxCodigoColaborador.DropDownStyle = ComboBoxStyle.DropDown;
+                cbxCodigoColaborador.SelectedIndex = -1;
             }
             else
             {
@@ -74,6 +80,61 @@ namespace RelatorioPosto
                     MessageBox.Show("Código deve ser numérico.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cbxCodigoColaborador.Text = "";
                 }
+            }
+        }
+
+        private void btnConfirmarLogin_Click(object sender, EventArgs e)
+        {
+            if (cbxCodigoColaborador.SelectedValue != null)
+            {
+                int codigo = Convert.ToInt32(cbxCodigoColaborador.SelectedValue);
+                string senhaInput = txbxSenhaColaborador.Text.Trim();
+                if (string.IsNullOrEmpty(senhaInput))
+                {
+                    MessageBox.Show("Digite a senha.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string senhaHash = GetMd5Hash(senhaInput);
+
+                string query = $"SELECT AP_VEN FROM AVENDEGE WHERE CODIGO_VEN = {codigo}";
+                DataTable dt = sqlDataAcess.ExecuteQuery(query);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    string senhaBanco = dt.Rows[0]["AP_VEN"].ToString();
+                    if (senhaHash.Equals(senhaBanco, StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("Login bem-sucedido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Senha incorreta.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Colaborador não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um colaborador.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private string GetMd5Hash(string input)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+                return sb.ToString();
             }
         }
     }
