@@ -148,12 +148,14 @@
             // 
             // lblTotalGeral
             // 
-            this.lblTotalGeral.AutoSize = true;
-            this.lblTotalGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalGeral.Location = new System.Drawing.Point(313, 537);
+            this.lblTotalGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalGeral.Location = new System.Drawing.Point(7, 525);
             this.lblTotalGeral.Name = "lblTotalGeral";
-            this.lblTotalGeral.Size = new System.Drawing.Size(0, 15);
+            this.lblTotalGeral.Size = new System.Drawing.Size(770, 25);
             this.lblTotalGeral.TabIndex = 7;
+            this.lblTotalGeral.Text = "Total de Vendas: Abastecimentos: 0 | Litros: 0,000 | R$ 0,00";
+            this.lblTotalGeral.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTotalGeral.Click += new System.EventHandler(this.lblTotalGeral_Click);
             // 
             // frmPrincipal
             // 
@@ -172,7 +174,6 @@
             this.gpbxFiltroColaborador.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProdutos)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

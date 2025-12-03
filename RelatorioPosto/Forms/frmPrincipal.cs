@@ -308,6 +308,19 @@ namespace RelatorioPosto.Forms
 
             dtgvProdutos.DataSource = null;
             dtgvProdutos.DataSource = vendasDisplay;
+
+            AtualizarTotalGeral();
+        }
+
+        private void AtualizarTotalGeral()
+        {
+            var produtosPrincipais = vendasDisplay.Where(v => !v.IsDetailRow).ToList();
+
+            int totalAbastecimentos = produtosPrincipais.Sum(v => v.NumAbastecimentos);
+            double totalLitros = produtosPrincipais.Sum(v => v.Quantidade);
+            double totalValor = produtosPrincipais.Sum(v => v.ValorTotal);
+
+            lblTotalGeral.Text = $"Total de Vendas: Abastecimentos: {totalAbastecimentos} | Litros: {totalLitros:N3} | {totalValor:C2}";
         }
 
         private void btnFiltrarData_Click(object sender, EventArgs e)
@@ -318,6 +331,11 @@ namespace RelatorioPosto.Forms
         }
 
         private void dtpDataInicio_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTotalGeral_Click(object sender, EventArgs e)
         {
 
         }
