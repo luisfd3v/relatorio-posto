@@ -39,6 +39,7 @@
             this.lblColaboradorSelecionado2 = new System.Windows.Forms.Label();
             this.lblColaboradorSelecionado = new System.Windows.Forms.Label();
             this.dtgvProdutos = new System.Windows.Forms.DataGridView();
+            this.lblTotalGeral = new System.Windows.Forms.Label();
             this.gpbxFiltroColaborador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProdutos)).BeginInit();
             this.SuspendLayout();
@@ -142,14 +143,24 @@
             this.dtgvProdutos.Location = new System.Drawing.Point(7, 116);
             this.dtgvProdutos.Name = "dtgvProdutos";
             this.dtgvProdutos.ReadOnly = true;
-            this.dtgvProdutos.Size = new System.Drawing.Size(770, 440);
+            this.dtgvProdutos.Size = new System.Drawing.Size(770, 401);
             this.dtgvProdutos.TabIndex = 1;
+            // 
+            // lblTotalGeral
+            // 
+            this.lblTotalGeral.AutoSize = true;
+            this.lblTotalGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalGeral.Location = new System.Drawing.Point(313, 537);
+            this.lblTotalGeral.Name = "lblTotalGeral";
+            this.lblTotalGeral.Size = new System.Drawing.Size(0, 15);
+            this.lblTotalGeral.TabIndex = 7;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblTotalGeral);
             this.Controls.Add(this.dtgvProdutos);
             this.Controls.Add(this.gpbxFiltroColaborador);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -161,6 +172,7 @@
             this.gpbxFiltroColaborador.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProdutos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -176,5 +188,6 @@
         private System.Windows.Forms.Button btnTrocarColaborador;
         private System.Windows.Forms.Button btnFiltrarData;
         private System.Windows.Forms.DataGridView dtgvProdutos;
+        private System.Windows.Forms.Label lblTotalGeral;
     }
 }

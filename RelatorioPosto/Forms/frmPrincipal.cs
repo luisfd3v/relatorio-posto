@@ -131,6 +131,12 @@ namespace RelatorioPosto.Forms
             dtgvProdutos.BackgroundColor = System.Drawing.Color.White;
             dtgvProdutos.BorderStyle = BorderStyle.Fixed3D;
 
+            dtgvProdutos.RowTemplate.Height = 28;
+            dtgvProdutos.GridColor = Color.FromArgb(230, 230, 230);
+            dtgvProdutos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 250, 250);
+            dtgvProdutos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 153, 255);
+            dtgvProdutos.DefaultCellStyle.SelectionForeColor = Color.White;
+
             dtgvProdutos.CellClick += dtgvProdutos_CellClick;
             dtgvProdutos.CellDoubleClick += dtgvProdutos_CellDoubleClick;
             dtgvProdutos.CellFormatting += dtgvProdutos_CellFormatting;
@@ -146,15 +152,31 @@ namespace RelatorioPosto.Forms
                 {
                     if (item.TipoProduto == "total_dia")
                     {
-                        e.CellStyle.BackColor = Color.LightBlue;
+                        e.CellStyle.BackColor = Color.FromArgb(230, 240, 250);
                         e.CellStyle.Font = new Font(dtgvProdutos.Font, FontStyle.Bold);
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.FromArgb(0, 70, 130);
+
+                        if (e.ColumnIndex == 1)
+                        {
+                            e.CellStyle.Padding = new Padding(10, 0, 0, 0);
+                        }
                     }
                     else
                     {
                         e.CellStyle.BackColor = Color.White;
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.FromArgb(80, 80, 80);
+
+                        if (e.ColumnIndex == 1)
+                        {
+                            e.CellStyle.Padding = new Padding(30, 0, 0, 0);
+                        }
                     }
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.FromArgb(245, 248, 252);
+                    e.CellStyle.Font = new Font(dtgvProdutos.Font, FontStyle.Bold);
+                    e.CellStyle.ForeColor = Color.FromArgb(40, 40, 40);
                 }
             }
         }
@@ -241,13 +263,6 @@ namespace RelatorioPosto.Forms
                 var linhaTotalDia = new Models.VendaItemDisplay(totalDia, true, grupo.Key);
                 vendasDisplay.Insert(insertIndex, linhaTotalDia);
                 insertIndex++;
-
-                foreach (var venda in grupo.OrderBy(v => v.ProdutoDescricao))
-                {
-                    var detalhe = new Models.VendaItemDisplay(venda, true, grupo.Key);
-                    vendasDisplay.Insert(insertIndex, detalhe);
-                    insertIndex++;
-                }
             }
         }
 
