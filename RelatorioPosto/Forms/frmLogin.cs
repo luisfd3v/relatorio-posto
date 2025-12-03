@@ -105,10 +105,9 @@ namespace RelatorioPosto
                     string senhaBanco = dt.Rows[0]["AP_VEN"].ToString();
                     if (senhaHash.Equals(senhaBanco, StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Login bem-sucedido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DataRowView selectedRow = (DataRowView)cbxCodigoColaborador.SelectedItem;
                         string nomeColaborador = selectedRow["NomeCompleto"].ToString();
-                        RelatorioPosto.Forms.frmPrincipal principal = new RelatorioPosto.Forms.frmPrincipal(this, nomeColaborador);
+                        RelatorioPosto.Forms.frmPrincipal principal = new RelatorioPosto.Forms.frmPrincipal(this, nomeColaborador, codigo.ToString());
                         principal.Show();
                         this.Hide();
                     }

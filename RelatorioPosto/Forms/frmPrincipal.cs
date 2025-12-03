@@ -6,16 +6,18 @@ namespace RelatorioPosto.Forms
     public partial class frmPrincipal : Form
     {
         private RelatorioPosto.frmLogin loginForm;
+        private string colaboradorCodigo;
 
         public frmPrincipal()
         {
             InitializeComponent();
         }
 
-        public frmPrincipal(RelatorioPosto.frmLogin login, string nomeColaborador)
+        public frmPrincipal(RelatorioPosto.frmLogin login, string nomeColaborador, string codigoColaborador)
         {
             InitializeComponent();
             loginForm = login;
+            colaboradorCodigo = codigoColaborador;
             lblColaboradorSelecionado2.Text = nomeColaborador;
         }
 
@@ -52,6 +54,19 @@ namespace RelatorioPosto.Forms
             DateTime now = DateTime.Now;
             dtpDataInicio.Value = new DateTime(now.Year, now.Month, 1);
             dtpDataFim.Value = now;
+            CarregarDados();
+        }
+
+        private void CarregarDados()
+        {
+            var sqlDataAcess = new RelatorioPosto.DataAcess.SqlDataAcess();
+            var vendas = sqlDataAcess.GetVendasPorColaboradorEPeriodo(colaboradorCodigo, dtpDataInicio.Value, dtpDataFim.Value);
+            dtgvProdutos.DataSource = vendas;
+        }
+
+        private void btnFiltrarData_Click(object sender, EventArgs e)
+        {
+            CarregarDados();
         }
     }
 }

@@ -38,9 +38,9 @@
             this.lblDataInicio = new System.Windows.Forms.Label();
             this.lblColaboradorSelecionado2 = new System.Windows.Forms.Label();
             this.lblColaboradorSelecionado = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgvProdutos = new System.Windows.Forms.DataGridView();
             this.gpbxFiltroColaborador.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // gpbxFiltroColaborador
@@ -68,6 +68,7 @@
             this.btnFiltrarData.TabIndex = 6;
             this.btnFiltrarData.Text = "Filtrar";
             this.btnFiltrarData.UseVisualStyleBackColor = true;
+            this.btnFiltrarData.Click += new System.EventHandler(this.btnFiltrarData_Click);
             // 
             // btnTrocarColaborador
             // 
@@ -134,29 +135,30 @@
             this.lblColaboradorSelecionado.TabIndex = 0;
             this.lblColaboradorSelecionado.Text = "Colaborador Selecionado:";
             // 
-            // dataGridView1
+            // dtgvProdutos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 116);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(770, 440);
-            this.dataGridView1.TabIndex = 1;
+            this.dtgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvProdutos.Location = new System.Drawing.Point(7, 116);
+            this.dtgvProdutos.Name = "dtgvProdutos";
+            this.dtgvProdutos.ReadOnly = true;
+            this.dtgvProdutos.Size = new System.Drawing.Size(770, 440);
+            this.dtgvProdutos.TabIndex = 1;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgvProdutos);
             this.Controls.Add(this.gpbxFiltroColaborador);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
             this.Text = "Relatório de Vendas";
-            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPrincipal_FormClosed);
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.gpbxFiltroColaborador.ResumeLayout(false);
             this.gpbxFiltroColaborador.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvProdutos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -172,6 +174,6 @@
         private System.Windows.Forms.DateTimePicker dtpDataInicio;
         private System.Windows.Forms.Button btnTrocarColaborador;
         private System.Windows.Forms.Button btnFiltrarData;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgvProdutos;
     }
 }
