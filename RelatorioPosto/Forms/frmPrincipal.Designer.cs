@@ -152,6 +152,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
             this.Text = "Relatório de Vendas";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPrincipal_FormClosed);
             this.gpbxFiltroColaborador.ResumeLayout(false);
             this.gpbxFiltroColaborador.PerformLayout();

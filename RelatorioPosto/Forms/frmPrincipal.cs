@@ -46,5 +46,12 @@ namespace RelatorioPosto.Forms
                 Application.Exit();
             }
         }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            dtpDataInicio.Value = new DateTime(now.Year, now.Month, 1);
+            dtpDataFim.Value = now;
+        }
     }
 }
