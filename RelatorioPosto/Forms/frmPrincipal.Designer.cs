@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.gpbxFiltroColaborador = new System.Windows.Forms.GroupBox();
-            this.lblColaboradorSelecionado = new System.Windows.Forms.Label();
-            this.lblColaboradorSelecionado2 = new System.Windows.Forms.Label();
-            this.lblDataInicio = new System.Windows.Forms.Label();
-            this.lblDataFim = new System.Windows.Forms.Label();
-            this.dtpDataInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpDataFim = new System.Windows.Forms.DateTimePicker();
-            this.btnTrocarColaborador = new System.Windows.Forms.Button();
             this.btnFiltrarData = new System.Windows.Forms.Button();
+            this.btnTrocarColaborador = new System.Windows.Forms.Button();
+            this.dtpDataFim = new System.Windows.Forms.DateTimePicker();
+            this.dtpDataInicio = new System.Windows.Forms.DateTimePicker();
+            this.lblDataFim = new System.Windows.Forms.Label();
+            this.lblDataInicio = new System.Windows.Forms.Label();
+            this.lblColaboradorSelecionado2 = new System.Windows.Forms.Label();
+            this.lblColaboradorSelecionado = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gpbxFiltroColaborador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -59,35 +59,40 @@
             this.gpbxFiltroColaborador.TabIndex = 0;
             this.gpbxFiltroColaborador.TabStop = false;
             // 
-            // lblColaboradorSelecionado
+            // btnFiltrarData
             // 
-            this.lblColaboradorSelecionado.AutoSize = true;
-            this.lblColaboradorSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColaboradorSelecionado.Location = new System.Drawing.Point(6, 16);
-            this.lblColaboradorSelecionado.Name = "lblColaboradorSelecionado";
-            this.lblColaboradorSelecionado.Size = new System.Drawing.Size(150, 15);
-            this.lblColaboradorSelecionado.TabIndex = 0;
-            this.lblColaboradorSelecionado.Text = "Colaborador Selecionado:";
+            this.btnFiltrarData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarData.Location = new System.Drawing.Point(537, 46);
+            this.btnFiltrarData.Name = "btnFiltrarData";
+            this.btnFiltrarData.Size = new System.Drawing.Size(78, 46);
+            this.btnFiltrarData.TabIndex = 6;
+            this.btnFiltrarData.Text = "Filtrar";
+            this.btnFiltrarData.UseVisualStyleBackColor = true;
             // 
-            // lblColaboradorSelecionado2
+            // btnTrocarColaborador
             // 
-            this.lblColaboradorSelecionado2.AutoSize = true;
-            this.lblColaboradorSelecionado2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColaboradorSelecionado2.Location = new System.Drawing.Point(162, 16);
-            this.lblColaboradorSelecionado2.Name = "lblColaboradorSelecionado2";
-            this.lblColaboradorSelecionado2.Size = new System.Drawing.Size(90, 17);
-            this.lblColaboradorSelecionado2.TabIndex = 1;
-            this.lblColaboradorSelecionado2.Text = "1 - WCLICK";
+            this.btnTrocarColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrocarColaborador.Location = new System.Drawing.Point(633, 12);
+            this.btnTrocarColaborador.Name = "btnTrocarColaborador";
+            this.btnTrocarColaborador.Size = new System.Drawing.Size(121, 23);
+            this.btnTrocarColaborador.TabIndex = 5;
+            this.btnTrocarColaborador.Text = "Trocar Colaborador";
+            this.btnTrocarColaborador.UseVisualStyleBackColor = true;
+            this.btnTrocarColaborador.Click += new System.EventHandler(this.btnTrocarColaborador_Click);
             // 
-            // lblDataInicio
+            // dtpDataFim
             // 
-            this.lblDataInicio.AutoSize = true;
-            this.lblDataInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataInicio.Location = new System.Drawing.Point(6, 47);
-            this.lblDataInicio.Name = "lblDataInicio";
-            this.lblDataInicio.Size = new System.Drawing.Size(68, 15);
-            this.lblDataInicio.TabIndex = 2;
-            this.lblDataInicio.Text = "Data Início:";
+            this.dtpDataFim.Location = new System.Drawing.Point(80, 72);
+            this.dtpDataFim.Name = "dtpDataFim";
+            this.dtpDataFim.Size = new System.Drawing.Size(440, 20);
+            this.dtpDataFim.TabIndex = 4;
+            // 
+            // dtpDataInicio
+            // 
+            this.dtpDataInicio.Location = new System.Drawing.Point(80, 46);
+            this.dtpDataInicio.Name = "dtpDataInicio";
+            this.dtpDataInicio.Size = new System.Drawing.Size(440, 20);
+            this.dtpDataInicio.TabIndex = 1;
             // 
             // lblDataFim
             // 
@@ -99,39 +104,35 @@
             this.lblDataFim.TabIndex = 3;
             this.lblDataFim.Text = "Data Fim:";
             // 
-            // dtpDataInicio
+            // lblDataInicio
             // 
-            this.dtpDataInicio.Location = new System.Drawing.Point(80, 46);
-            this.dtpDataInicio.Name = "dtpDataInicio";
-            this.dtpDataInicio.Size = new System.Drawing.Size(440, 20);
-            this.dtpDataInicio.TabIndex = 1;
+            this.lblDataInicio.AutoSize = true;
+            this.lblDataInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataInicio.Location = new System.Drawing.Point(6, 47);
+            this.lblDataInicio.Name = "lblDataInicio";
+            this.lblDataInicio.Size = new System.Drawing.Size(68, 15);
+            this.lblDataInicio.TabIndex = 2;
+            this.lblDataInicio.Text = "Data Início:";
             // 
-            // dtpDataFim
+            // lblColaboradorSelecionado2
             // 
-            this.dtpDataFim.Location = new System.Drawing.Point(80, 72);
-            this.dtpDataFim.Name = "dtpDataFim";
-            this.dtpDataFim.Size = new System.Drawing.Size(440, 20);
-            this.dtpDataFim.TabIndex = 4;
+            this.lblColaboradorSelecionado2.AutoSize = true;
+            this.lblColaboradorSelecionado2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColaboradorSelecionado2.Location = new System.Drawing.Point(155, 16);
+            this.lblColaboradorSelecionado2.Name = "lblColaboradorSelecionado2";
+            this.lblColaboradorSelecionado2.Size = new System.Drawing.Size(90, 17);
+            this.lblColaboradorSelecionado2.TabIndex = 1;
+            this.lblColaboradorSelecionado2.Text = "1 - WCLICK";
             // 
-            // btnTrocarColaborador
+            // lblColaboradorSelecionado
             // 
-            this.btnTrocarColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrocarColaborador.Location = new System.Drawing.Point(633, 12);
-            this.btnTrocarColaborador.Name = "btnTrocarColaborador";
-            this.btnTrocarColaborador.Size = new System.Drawing.Size(121, 23);
-            this.btnTrocarColaborador.TabIndex = 5;
-            this.btnTrocarColaborador.Text = "Trocar Colaborador";
-            this.btnTrocarColaborador.UseVisualStyleBackColor = true;
-            // 
-            // btnFiltrarData
-            // 
-            this.btnFiltrarData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrarData.Location = new System.Drawing.Point(537, 46);
-            this.btnFiltrarData.Name = "btnFiltrarData";
-            this.btnFiltrarData.Size = new System.Drawing.Size(78, 46);
-            this.btnFiltrarData.TabIndex = 6;
-            this.btnFiltrarData.Text = "Filtrar";
-            this.btnFiltrarData.UseVisualStyleBackColor = true;
+            this.lblColaboradorSelecionado.AutoSize = true;
+            this.lblColaboradorSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColaboradorSelecionado.Location = new System.Drawing.Point(6, 16);
+            this.lblColaboradorSelecionado.Name = "lblColaboradorSelecionado";
+            this.lblColaboradorSelecionado.Size = new System.Drawing.Size(150, 15);
+            this.lblColaboradorSelecionado.TabIndex = 0;
+            this.lblColaboradorSelecionado.Text = "Colaborador Selecionado:";
             // 
             // dataGridView1
             // 
@@ -151,6 +152,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
             this.Text = "Relatório de Vendas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPrincipal_FormClosed);
             this.gpbxFiltroColaborador.ResumeLayout(false);
             this.gpbxFiltroColaborador.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

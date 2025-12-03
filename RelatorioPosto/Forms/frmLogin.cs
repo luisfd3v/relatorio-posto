@@ -106,7 +106,9 @@ namespace RelatorioPosto
                     if (senhaHash.Equals(senhaBanco, StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Login bem-sucedido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RelatorioPosto.Forms.frmPrincipal principal = new RelatorioPosto.Forms.frmPrincipal();
+                        DataRowView selectedRow = (DataRowView)cbxCodigoColaborador.SelectedItem;
+                        string nomeColaborador = selectedRow["NomeCompleto"].ToString();
+                        RelatorioPosto.Forms.frmPrincipal principal = new RelatorioPosto.Forms.frmPrincipal(this, nomeColaborador);
                         principal.Show();
                         this.Hide();
                     }
@@ -139,6 +141,12 @@ namespace RelatorioPosto
                 }
                 return sb.ToString();
             }
+        }
+
+        public void ResetFields()
+        {
+            cbxCodigoColaborador.SelectedIndex = -1;
+            txbxSenhaColaborador.Text = "";
         }
     }
 }
