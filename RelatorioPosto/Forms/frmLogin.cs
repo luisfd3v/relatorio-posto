@@ -4,6 +4,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using RelatorioPosto.Forms;
 
 namespace RelatorioPosto
 {
@@ -105,7 +106,9 @@ namespace RelatorioPosto
                     if (senhaHash.Equals(senhaBanco, StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Login bem-sucedido!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        RelatorioPosto.Forms.frmPrincipal principal = new RelatorioPosto.Forms.frmPrincipal();
+                        principal.Show();
+                        this.Hide();
                     }
                     else
                     {
