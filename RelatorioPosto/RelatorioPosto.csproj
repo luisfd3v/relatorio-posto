@@ -64,6 +64,7 @@
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\VendaItem.cs" />
+    <Compile Include="Models\VendaItemDisplay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\frmLogin.resx">

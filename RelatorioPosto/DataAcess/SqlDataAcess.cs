@@ -114,7 +114,7 @@ namespace RelatorioPosto.DataAcess
                         GROUP BY 
                             p.AA_ITE, p.AB_ITE, ac.AG_CUP, p.BZ_ITE
                         ORDER BY 
-                            ac.AG_CUP, p.AB_ITE
+                            p.AA_ITE, ac.AG_CUP
                     ";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -190,6 +190,84 @@ namespace RelatorioPosto.DataAcess
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao buscar vendas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return vendas;
+        }
+
+        public List<Models.VendaItem> GetVendasDetalhadasPorProduto(string codigoVendedor, string codigoProduto, DateTime dataInicio, DateTime dataFim)
+        {
+            var vendas = new List<Models.VendaItem>();
+            try
+            {
+                using (SqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT 
+                            p.AA_ITE as CodigoProduto,
+                            p.AB_ITE as DescricaoProduto,
+                            SUM(al.AF_LPO) AS quantidade_total,
+                            SUM(al.AL_LPO - al.AH_LPO) AS valor_liquido,
+                            ac.AG_CUP as DataEmissao,
+                            p.BZ_ITE as TipoProduto,
+                            COUNT(DISTINCT ac.AA_CUP) AS num_abastecimentos
+                        FROM 
+                            ALANCAPO al
+                        INNER JOIN 
+                            ACUPOMPO ac ON al.AA_LPO = ac.AA_CUP 
+                                AND al.AM_LPO = ac.AK_CUP 
+                                AND al.AN_LPO = ac.AN_CUP
+                        INNER JOIN 
+                            CE_PRODUTO p ON CAST(al.AC_LPO AS INT) = CAST(p.AA_ITE AS INT)
+                        WHERE 
+                            ac.AF_CUP = @codigoVendedor
+                            AND p.AA_ITE = @codigoProduto
+                            AND ac.AG_CUP >= @dataInicio
+                            AND ac.AG_CUP <= @dataFim
+                            AND al.AB_LPO = '01'
+                            AND ac.AH_CUP BETWEEN '3' AND '8'
+                        GROUP BY 
+                            p.AA_ITE, p.AB_ITE, ac.AG_CUP, p.BZ_ITE
+                        ORDER BY 
+                            ac.AG_CUP, p.AB_ITE
+                    ";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@codigoVendedor", int.Parse(codigoVendedor));
+                        cmd.Parameters.AddWithValue("@codigoProduto", codigoProduto);
+                        cmd.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyyMMdd"));
+                        cmd.Parameters.AddWithValue("@dataFim", dataFim.AddDays(1).ToString("yyyyMMdd"));
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string produtoCodigo = reader["CodigoProduto"].ToString();
+                                string produtoDescricao = reader["DescricaoProduto"].ToString();
+                                double quantidadeTotal = reader["quantidade_total"] != DBNull.Value ? Convert.ToDouble(reader["quantidade_total"]) : 0.0;
+                                double valorLiquido = reader["valor_liquido"] != DBNull.Value ? Convert.ToDouble(reader["valor_liquido"]) : 0.0;
+                                DateTime dataVenda = Convert.ToDateTime(reader["DataEmissao"]);
+                                string bzIte = reader["TipoProduto"].ToString().Trim();
+                                int numAbastecimentos = reader["num_abastecimentos"] != DBNull.Value ? Convert.ToInt32(reader["num_abastecimentos"]) : 1;
+
+                                vendas.Add(new Models.VendaItem
+                                {
+                                    ProdutoCodigo = produtoCodigo,
+                                    ProdutoDescricao = produtoDescricao,
+                                    Quantidade = quantidadeTotal,
+                                    ValorTotal = valorLiquido,
+                                    DataVenda = dataVenda,
+                                    TipoProduto = bzIte == "4" || bzIte == "04" ? "combustivel" : "outros",
+                                    NumAbastecimentos = numAbastecimentos
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar vendas detalhadas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return vendas;
         }
