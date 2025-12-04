@@ -12,7 +12,7 @@ Após feito o Download, extraia a pasta compactada.
 
 Recomendo criar uma pasta RelatorioPosto na pasta raiz do VTi, para manter uma organização.
 
-![pasta-instalacao](Assets/pasta-instalacao.png)
+![pasta-instalacao](RelatorioPosto/Assets/pasta-instalacao.png)
 
 Abra o arquivo .config e edite as informações para configuração do banco de dados caso necessário.
 
@@ -20,13 +20,13 @@ Abra o arquivo .config e edite as informações para configuração do banco de 
 
 Edite apenas os campos Data Source, Initial Catalog, User ID e Password após o sinal de = .
 
-![arquivo-config](Assets/arquivo-config.png)
+![arquivo-config](RelatorioPosto/Assets/arquivo-config.png)
 
 ## Uso/Exemplos
 
 Ao executar o app, irá abrir a tela de login para seleção do colaborador.
 
-![tela-login](Assets/tela-login.png)
+![tela-login](RelatorioPosto/Assets/tela-login.png)
 
 Feito o login, será exibido a tela principal do app que terá as seguintes funcionalidades:
 
@@ -36,4 +36,4 @@ Feito o login, será exibido a tela principal do app que terá as seguintes func
 
 - Trocar Colaborador (volta para tela de login).
 
-![tela-principal](Assets/tela-principal.png)
+![tela-principal](RelatorioPosto/Assets/tela-principal.png)
